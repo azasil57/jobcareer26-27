@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Permohonan Diterima - JOBCAREER</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f3f6fa;margin:0;min-height:100vh;display:grid;place-items:center;color:#203047}
+main{background:#fff;padding:32px;border-radius:16px;max-width:480px;width:calc(100% - 40px);box-sizing:border-box;text-align:center;box-shadow:0 8px 30px #102c5018}
+h1{color:#16784a}.ref{font-size:22px;font-weight:bold;letter-spacing:1px;background:#eef5ff;padding:14px;border-radius:8px;overflow-wrap:anywhere}
+a{display:inline-block;margin:10px;padding:12px 18px;border-radius:8px;background:#102c50;color:#fff;text-decoration:none}
+</style></head>
+<body><main>
+<h1>Permohonan diterima</h1>
+<p>Terima kasih. Simpan kod rujukan ini untuk menyemak permohonan anda.</p>
+<div class="ref" id="ref">Memuatkan...</div>
+<p id="note">Kod ini ialah nombor rujukan permohonan, bukan OTP atau kata laluan.</p>
+<a href="kod.html">Semak rujukan</a><a href="index.html">Kembali ke utama</a>
+</main>
+<script>
+const ref=sessionStorage.getItem('jobcareerReference');
+document.getElementById('ref').textContent=ref||'Tiada kod rujukan ditemui';
+</script></body></html>

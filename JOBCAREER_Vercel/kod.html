@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ms">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Semak Kod Rujukan - JOBCAREER</title>
+<style>
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;background:#f3f6fa;margin:0;min-height:100vh;display:grid;place-items:center;color:#203047}
+main{background:#fff;padding:30px;border-radius:14px;width:min(440px,calc(100% - 32px));box-shadow:0 8px 30px #102c5018}
+h1{margin-top:0;color:#102c50}label{display:block;margin:18px 0 7px;font-weight:bold}
+input{width:100%;padding:13px;border:1px solid #ccd5e0;border-radius:8px;font-size:16px}
+button{width:100%;padding:13px;border:0;border-radius:8px;background:#1766a4;color:#fff;font-size:16px;margin-top:16px;cursor:pointer}
+#result{margin-top:16px;line-height:1.5}.muted{color:#667085;font-size:13px}
+</style></head>
+<body><main>
+<h1>Semak kod rujukan</h1>
+<p>Masukkan kod rujukan permohonan JOBCAREER anda, contohnya JC-A1B2C3D4.</p>
+<form id="checkForm">
+<label for="reference">Kod rujukan</label>
+<input id="reference" name="reference" required maxlength="20" autocomplete="off" placeholder="JC-XXXXXXXX">
+<button type="submit">Semak</button>
+</form>
+<div id="result" role="status"></div>
+<p class="muted">Ini hanya nombor rujukan permohonan, bukan kod OTP atau kod pengesahan akaun lain.</p>
+</main>
+<script>
+document.getElementById('checkForm').addEventListener('submit', async e=>{
+ e.preventDefault();
+ const result=document.getElementById('result');
+ result.textContent='Sedang menyemak...';
+ try{
+  const r=await fetch('/api/kod',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reference:document.getElementById('reference').value.trim()})});
+  const d=await r.json();
+  result.textContent=d.message || 'Permintaan selesai.';
+ }catch(err){result.textContent='Tidak dapat menghubungi server. Cuba lagi.';}
+});
+</script></body></html>
